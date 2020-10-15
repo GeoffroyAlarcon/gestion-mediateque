@@ -2,19 +2,21 @@ package fr.demos.models;
 
 import java.util.ArrayList;
 
+import sun.jvm.hotspot.debugger.posix.elf.ELFSectionHeader;
+
 public class Adherant {
 	private int id;
 	private String nom;
 	private String adresseMail;
 	private int numeroAdherant;
-	ArrayList<Livre> lisvreEmprumte = new ArrayList();
+	ArrayList<Livre> livresEmprumtees = new ArrayList();
 
 	public Adherant(String nom, String adresseMail, int numeroAdherant, ArrayList<Livre> lisvreEmprumte) {
 		super();
 		this.nom = nom;
 		this.adresseMail = adresseMail;
 		this.numeroAdherant = numeroAdherant;
-		this.lisvreEmprumte = lisvreEmprumte;
+		this.livresEmprumtees = lisvreEmprumte;
 	}
 
 	public Adherant(String nom, String adresseMail, int numeroAdherant) {
@@ -53,11 +55,11 @@ public class Adherant {
 	}
 
 	public ArrayList<Livre> getLisvreEmprumte() {
-		return lisvreEmprumte;
+		return livresEmprumtees;
 	}
 
 	public void setLisvreEmprumte(ArrayList<Livre> lisvreEmprumte) {
-		this.lisvreEmprumte = lisvreEmprumte;
+		this.livresEmprumtees = lisvreEmprumte;
 	}
 
 	public int getId() {
@@ -68,4 +70,14 @@ public class Adherant {
 		this.id = id;
 	}
 
+	public void reserveUnlivre(Livre livre) {
+		if (livresEmprumtees.size() < 5 && livre.getEstReserve() == false) {
+			livresEmprumtees.add(livre);
+			livre.setEstReserve(true);
+		} else if (livre.getEstReserve() == true) {
+			System.out.println(getNom() + " ce livre est déjà empruntée");
+		} else {
+			System.out.println(getNom() + " a déjà emprunté 5 livres");
+		}
+	}
 }
