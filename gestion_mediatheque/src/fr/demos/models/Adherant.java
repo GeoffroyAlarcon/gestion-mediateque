@@ -3,25 +3,27 @@ package fr.demos.models;
 import java.util.ArrayList;
 
 
-public class adherant {
+public class Adherant {
 	private String nom;
 	private String adresseMail;
 	private int numeroAdherant;
 	ArrayList<Livre> lisvreEmprumte = new ArrayList();
-	public adherant(String nom, String adresseMail, int numeroAdherant, ArrayList<Livre> lisvreEmprumte) {
+	public Adherant(String nom, String adresseMail, int numeroAdherant, ArrayList<Livre> lisvreEmprumte) {
 		super();
 		this.nom = nom;
 		this.adresseMail = adresseMail;
 		this.numeroAdherant = numeroAdherant;
 		this.lisvreEmprumte = lisvreEmprumte;
 	}
-	public adherant(String nom, String adresseMail, int numeroAdherant) {
+	public Adherant(String nom, String adresseMail, int numeroAdherant) {
 		super();
 		this.nom = nom;
 		this.adresseMail = adresseMail;
 		this.numeroAdherant = numeroAdherant;
 	}
-	public adherant() {
+	
+	
+	public Adherant() {
 		super();
 	}
 	public String getNom() {
