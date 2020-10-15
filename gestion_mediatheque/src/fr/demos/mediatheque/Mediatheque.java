@@ -66,6 +66,24 @@ public class Mediatheque {
 		listeDAdherants.remove(adherant);
 	}
 
+	public void updateAderants(int id, Adherant adherant) {
+		for (Adherant findAdherant : listeDAdherants) {
+			if (id == findAdherant.getId()) {
+				listeDAdherants.remove(findAdherant);
+				listeDAdherants.add(findAdherant);
+			}
+		}
+	}
+
+	public void updateAderants(int id, Livre livre) {
+		for (Livre findLivre : listeDeLivres) {
+			if (id == findLivre.getId()) {
+				listeDeLivres.remove(findLivre);
+				listeDeLivres.add(findLivre);
+			}
+		}
+	}
+
 	@Override
 	public String toString() {
 		return "Mediatheque [nom=" + nom + ", listeDeLivres=" + listeDeLivres + ", listeDAdherants=" + listeDAdherants
