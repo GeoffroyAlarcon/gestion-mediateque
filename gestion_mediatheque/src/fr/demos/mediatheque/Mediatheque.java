@@ -7,7 +7,7 @@ import fr.demos.models.Livre;
 
 public class Mediatheque {
 	String nom;
-	ArrayList<Livre> listeDeLivres = new ArrayList();
+	ArrayList<Livre> listeDeLivres =  new ArrayList();
 	ArrayList<Adherant> listeDAdherants = new ArrayList();
 
 	public Mediatheque(String nom) {
@@ -56,10 +56,28 @@ public class Mediatheque {
 
 	public void ajouterUnAdherant(Adherant adherant) {
 		listeDAdherants.add(adherant);
+		adherant.setId(listeDAdherants.size());
 	}
 
 	public void supprimerUnlivre(Livre livre) {
 		listeDeLivres.remove(livre);
+	}
+
+	public void updateLivre(int isbn, Livre livre) {
+		for (Livre findLivre : listeDeLivres) {
+			if (isbn == findLivre.getIsbn()) {
+				listeDeLivres.remove(findLivre);
+				listeDeLivres.add(livre);
+			}
+		}
+	}
+
+	public ArrayList<Livre> findAllBook() {
+		return listeDeLivres;
+	}
+
+	public ArrayList<Adherant> findAllAdherants() {
+		return listeDAdherants;
 	}
 
 	public void supprimerUnAdherant(Adherant adherant) {
@@ -77,7 +95,7 @@ public class Mediatheque {
 
 	public void updateAderants(int id, Livre livre) {
 		for (Livre findLivre : listeDeLivres) {
-			if (id == findLivre.getId()) {
+			if (id == findLivre.getIsbn()) {
 				listeDeLivres.remove(findLivre);
 				listeDeLivres.add(findLivre);
 			}

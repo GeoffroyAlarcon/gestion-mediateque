@@ -2,16 +2,14 @@ package fr.demos.models;
 
 import java.util.ArrayList;
 
-import sun.jvm.hotspot.debugger.posix.elf.ELFSectionHeader;
-
 public class Adherant {
 	private int id;
 	private String nom;
 	private String adresseMail;
-	private int numeroAdherant;
+	private String numeroAdherant;
 	ArrayList<Livre> livresEmprumtees = new ArrayList();
 
-	public Adherant(String nom, String adresseMail, int numeroAdherant, ArrayList<Livre> lisvreEmprumte) {
+	public Adherant(String nom, String adresseMail, String numeroAdherant, ArrayList<Livre> lisvreEmprumte) {
 		super();
 		this.nom = nom;
 		this.adresseMail = adresseMail;
@@ -19,7 +17,7 @@ public class Adherant {
 		this.livresEmprumtees = lisvreEmprumte;
 	}
 
-	public Adherant(String nom, String adresseMail, int numeroAdherant) {
+	public Adherant(String nom, String adresseMail, String numeroAdherant) {
 		super();
 		this.nom = nom;
 		this.adresseMail = adresseMail;
@@ -46,11 +44,11 @@ public class Adherant {
 		this.adresseMail = adresseMail;
 	}
 
-	public int getNumeroAdherant() {
+	public String getNumeroAdherant() {
 		return numeroAdherant;
 	}
 
-	public void setNumeroAdherant(int numeroAdherant) {
+	public void setNumeroAdherant(String numeroAdherant) {
 		this.numeroAdherant = numeroAdherant;
 	}
 
@@ -74,10 +72,29 @@ public class Adherant {
 		if (livresEmprumtees.size() < 5 && livre.getEstReserve() == false) {
 			livresEmprumtees.add(livre);
 			livre.setEstReserve(true);
+			livre.setIdEmprunteur(this.id);
 		} else if (livre.getEstReserve() == true) {
 			System.out.println(getNom() + " ce livre est déjà empruntée");
 		} else {
 			System.out.println(getNom() + " a déjà emprunté 5 livres");
+
 		}
 	}
-}
+
+	public void restituerUnlivre(Livre livre) {
+		if (livre.getEstReserve() == true && livre.getIdEmprunteur() == this.id) {
+			livre.setEstReserve(false);
+			livresEmprumtees.remove(livre);
+			livre.setIdEmprunteur(0);
+		} else {
+			System.out.println("restitution impossible du livre.");
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Adherant [id=" + id + ", nom=" + nom + ", adresseMail=" + adresseMail + ", numeroAdherant="
+				+ numeroAdherant + ", livresEmprumtees=" + livresEmprumtees + "]";
+	}
+
+}// fin de la classe

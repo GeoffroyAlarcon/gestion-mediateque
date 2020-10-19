@@ -3,13 +3,14 @@ package fr.demos.models;
 import java.util.Date;
 
 public class Livre {
-	private int id;
+	private int isbn;
 	private String titre;
 	private String auteur;
 	private String categorie;
 	private Boolean estReserve;
 	private Date adresseDeRetour = new Date();
 	private Date adresseDEmprunt = new Date();
+	private int idEmprunteur;
 
 	public Livre(String titre, String auteur, String categorie) {
 		super();
@@ -18,12 +19,12 @@ public class Livre {
 		this.categorie = categorie;
 	}
 
-	public int getId() {
-		return id;
+	public int getIsbn() {
+		return isbn;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setIsbn(int isbn) {
+		this.isbn = isbn;
 	}
 
 	public String getTitre() {
@@ -72,6 +73,14 @@ public class Livre {
 
 	public void setAdressedemprunt(Date adressedemprunt) {
 		this.adresseDEmprunt = adressedemprunt;
+	}
+
+	public int getIdEmprunteur() {
+		return idEmprunteur;
+	}
+
+	public void setIdEmprunteur(int idEmprunteur) {
+		this.idEmprunteur = idEmprunteur;
 	}
 
 }
